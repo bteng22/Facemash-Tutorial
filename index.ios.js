@@ -1,13 +1,15 @@
 'use strict';
 
 var React = require('react-native');
+var FaceMashTab = require('./tabs/FaceMashTab');
 var {
   AppRegistry,
   StyleSheet,
   Text,
   View,
   TabBarIOS,
-  Component
+  Component,
+  StatusBarIOS
 } = React;
 
 class FaceMash extends Component {
@@ -19,6 +21,7 @@ class FaceMash extends Component {
   }
 
   changeTab(tabName) {
+    StatusBarIOS.setStyle(tabName === 'facemash' ? 1 : 0, false);
     this.setState({
       selectedTab: tabName
     });
@@ -33,7 +36,7 @@ class FaceMash extends Component {
           selected={ this.state.selectedTab === 'facemash' }
           onPress={()=> this.changeTab('facemash')}>
           <View style={styles.pageView}>
-            <Text>Face Mash</Text>
+            <FaceMashTab/>
           </View>
         </TabBarIOS.Item>
         <TabBarIOS.Item
